@@ -1,0 +1,4 @@
+cs.json
+pak.data
+*.tmp
+!.gitignore

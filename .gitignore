@@ -1,0 +1,14 @@
+build/
+dist/
+*.class
+.coverage
+.DS_Store
+.~lock.*
+*.log
+__pycache__/
+*.swp
+.vscode
+*.egg-info/
+htmlcov/
+releases-test/
+releases-prod/

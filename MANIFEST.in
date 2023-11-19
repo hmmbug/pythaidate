@@ -1,0 +1,3 @@
+include tests/data/cs.min.json
+include tests/data/pak.min.data
+include tests/data/julian.json
