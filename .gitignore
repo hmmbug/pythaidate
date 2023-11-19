@@ -1,5 +1,6 @@
 build/
 dist/
+.python-version
 *.class
 .coverage
 .DS_Store
