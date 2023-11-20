@@ -161,6 +161,10 @@ False
 
 # Limitations
 
+## General
+
+* Tested and supported on Python 3.8 - 3.12.
+
 ## Chulasakarat Era Lunisolar Calendar
 
 * The determination of which years are intercalary has been a somewhat subjective process and changed over the centuries, along with regional variations too. This library produces 7 intercalary months per 19 year period and 11 intercalary days per 57 years. This maintains the overall "pace" of the calendar but there may be slight short-term deviations from other calendars. But don't worry, those other calendars are just as wrong too - there's no definitive reference calendar.
