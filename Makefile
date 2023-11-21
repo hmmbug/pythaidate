@@ -18,7 +18,7 @@ build: clean-build
 	python3 -m build --wheel
 
 upload-prod:
-	twine upload --repository testpypi dist/*
+	twine upload --repository pypi dist/*
 	mkdir -p releases-prod
 	cp dist/* releases-prod/
 
