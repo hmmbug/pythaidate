@@ -41,16 +41,14 @@ class LSYear:
         tithi1 = (quot1 + horakhun1) % 30
 
         # Faraut, pg 28
-        self.langsak = self.tithi
-        if self.tithi == 0:
-            self.langsak = 1
+        self.langsak = max(1, self.tithi)
         self.nyd = self.langsak
         if self.nyd < 6:
             self.nyd += 29
         self.nyd = (self.weekday - self.nyd + 1 + 35) % 7
 
         # is there a solar year leap day?
-        self.leapday = 0 < self.kammabucala <= 127
+        self.leapday = self.kammabucala <= 207
 
         # A: normal year, 354 days
         # B: leap day, 355 days
