@@ -35,7 +35,7 @@ The `horakhun` (หรคุฌ) property gives the days since the epoch and `ju
 2451545
 ```
 
-Other properies show the internal calculation values:
+Other properties show the internal calculation values:
 * `kammabucala`: (กัมมัขผล) the excess of solar days over whole solar days
 * `masaken`: (มาสเกฌฑ์) The number of lunar months since the epoch
 * `uccabala`: The measure of the position of the Moon's apogee (furthest distance from the Earth). It increases by one unit a day to a maximum of 3232.
