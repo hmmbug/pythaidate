@@ -184,17 +184,19 @@ False
 
 ## English
 
-Eade, C. (2018). The Calendrical Systems of Mainland South-East Asia. Netherlands: Brill.
+* Eade, C. (2018). The Calendrical Systems of Mainland South-East Asia. Netherlands: Brill.
 
 ## French
 
-Faraut, F. G. (1910). [Astronomie cambodgienne](https://archive.org/details/farraut0astonomiecambodgienne). Vietnam: Imprimerie F.-H. Schneider.
+* Faraut, F. G. (1910). [Astronomie cambodgienne](https://archive.org/details/farraut0astonomiecambodgienne). Vietnam: Imprimerie F.-H. Schneider.
+
+* Billard, R. L'Astronomie Indienne. Investigation des Textes Sanskrits et des Donnees Numeriques. Paris: Ecole francaise d'extreme-orient. (1971).
 
 ## Thai
 
-หลวงวิศาลดรุณกร (อั้น สาริกบุตร) (1997) คัมภีร์โหราศาสตร์ไทย มาตรฐาน ฉบับสมบูรณ์. Thailand: ศรีปัญญา, สนพ.
+* หลวงวิศาลดรุณกร (อั้น สาริกบุตร) (1997) คัมภีร์โหราศาสตร์ไทย มาตรฐาน ฉบับสมบูรณ์. Thailand: ศรีปัญญา, สนพ.
 
-[ความรู้เรื่องปักขคณนา ตําราการคํานวณปฏิทินทางจันทรคติ](https://archive.org/details/unset0000unse_d6m6). (1999). Thailand: มูลนิธิมหามกุฏราชวิทยาลัยฯ.
+* [ความรู้เรื่องปักขคณนา ตําราการคํานวณปฏิทินทางจันทรคติ](https://archive.org/details/unset0000unse_d6m6). (1999). Thailand: มูลนิธิมหามกุฏราชวิทยาลัยฯ.
 
 # Other Resources
 
