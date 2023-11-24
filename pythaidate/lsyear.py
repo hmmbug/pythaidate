@@ -2,7 +2,7 @@ from .constants import (
     DAYS_IN_800_YEARS, 
     TIME_UNITS_IN_1_DAY, 
     EPOCH_OFFSET, 
-    UCCABALA_CONSTANT,
+    UCCAPON_CONSTANT,
     APOGEE_ROTATION_DAYS,
     CAL_TYPE_DAY_COUNTS,
 )
@@ -21,7 +21,7 @@ class LSYear:
         self.horakhun = (year * DAYS_IN_800_YEARS + EPOCH_OFFSET) // TIME_UNITS_IN_1_DAY + 1
         self.kammabucala = TIME_UNITS_IN_1_DAY - (year * DAYS_IN_800_YEARS + EPOCH_OFFSET) % TIME_UNITS_IN_1_DAY
         # ucc_i = (2611 + self.ahargana) // APOGEE_ROTATION_DAYS
-        self.uccabala = (UCCABALA_CONSTANT + self.horakhun)  % APOGEE_ROTATION_DAYS
+        self.uccapon = (UCCAPON_CONSTANT + self.horakhun)  % APOGEE_ROTATION_DAYS
         avo_quot = (self.horakhun * 11 + 650) // 692
         self.avoman = (self.horakhun * 11 + 650) % 692
         if self.avoman == 0:
@@ -76,7 +76,7 @@ class LSYear:
         return s.format(
             self.horakhun,
             self.kammabucala,
-            self.uccabala,
+            self.uccapon,
             self.avoman,
             self.masaken,
             self.tithi,

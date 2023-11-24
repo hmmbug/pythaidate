@@ -6,7 +6,7 @@ from .constants import (
     DAYS_IN_800_YEARS, 
     TIME_UNITS_IN_1_DAY, 
     EPOCH_OFFSET, 
-    UCCABALA_CONSTANT,
+    UCCAPON_CONSTANT,
     APOGEE_ROTATION_DAYS,
     WEEKDAYS,
     CS_JULIAN_DAY_OFFSET,
@@ -98,9 +98,9 @@ class CsDate:
         # kammabucala: A quantity that gives the excess of solar days over whole solar days (Thai: กัมมัขผล ???)
         self.__kamma = TIME_UNITS_IN_1_DAY - (self.__year * DAYS_IN_800_YEARS + EPOCH_OFFSET) % TIME_UNITS_IN_1_DAY
 
-        # uccabala: The measure of the position of the Moon's apogee. It increases by one unit a day to 
-        # a maximum of 3232 (Thai: ???)
-        self.__uccabala = (self.__horakhun + UCCABALA_CONSTANT) % APOGEE_ROTATION_DAYS
+        # uccapon: The measure of the position of the Moon's apogee. It increases by one unit a day to 
+        # a maximum of 3232 (Thai: อุจจพล)
+        self.__uccapon = (self.__horakhun + UCCAPON_CONSTANT) % APOGEE_ROTATION_DAYS
 
         # avoman: The excess of lunar days over solar days in units of 1/692 of a lunar day modulus 692.
         # It increases by 11 units each solar day. It is used to determine when to add intercalary days
@@ -289,8 +289,8 @@ class CsDate:
         return self.__masaken
     
     @property
-    def uccabala(self):
-        return self.__uccabala
+    def uccapon(self):
+        return self.__uccapon
     
     @property
     def avoman(self):
