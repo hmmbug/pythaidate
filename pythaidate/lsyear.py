@@ -2,7 +2,7 @@ from .constants import (
     DAYS_IN_800_YEARS, 
     TIME_UNITS_IN_1_DAY, 
     EPOCH_OFFSET, 
-    UCCABALA_CONSTANT,
+    UCCAPON_CONSTANT,
     APOGEE_ROTATION_DAYS,
     CAL_TYPE_DAY_COUNTS,
 )
@@ -21,7 +21,7 @@ class LSYear:
         self.horakhun = (year * DAYS_IN_800_YEARS + EPOCH_OFFSET) // TIME_UNITS_IN_1_DAY + 1
         self.kammabucala = TIME_UNITS_IN_1_DAY - (year * DAYS_IN_800_YEARS + EPOCH_OFFSET) % TIME_UNITS_IN_1_DAY
         # ucc_i = (2611 + self.ahargana) // APOGEE_ROTATION_DAYS
-        self.uccabala = (UCCABALA_CONSTANT + self.horakhun)  % APOGEE_ROTATION_DAYS
+        self.uccapon = (UCCAPON_CONSTANT + self.horakhun)  % APOGEE_ROTATION_DAYS
         avo_quot = (self.horakhun * 11 + 650) // 692
         self.avoman = (self.horakhun * 11 + 650) % 692
         if self.avoman == 0:
@@ -41,16 +41,14 @@ class LSYear:
         tithi1 = (quot1 + horakhun1) % 30
 
         # Faraut, pg 28
-        self.langsak = self.tithi
-        if self.tithi == 0:
-            self.langsak = 1
+        self.langsak = max(1, self.tithi)
         self.nyd = self.langsak
         if self.nyd < 6:
             self.nyd += 29
         self.nyd = (self.weekday - self.nyd + 1 + 35) % 7
 
         # is there a solar year leap day?
-        self.leapday = 0 < self.kammabucala <= 127
+        self.leapday = self.kammabucala <= 207
 
         # A: normal year, 354 days
         # B: leap day, 355 days
@@ -78,7 +76,7 @@ class LSYear:
         return s.format(
             self.horakhun,
             self.kammabucala,
-            self.uccabala,
+            self.uccapon,
             self.avoman,
             self.masaken,
             self.tithi,
