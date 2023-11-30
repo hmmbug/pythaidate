@@ -43,6 +43,7 @@ def from_julianday(jd):
     Return year, month, day from a Julian day number.
     Based on: https://gist.github.com/jiffyclub/1294443
     """
+    jd = int(jd)  # force to integer
     # jd = jd + 0.5
     F, I = math.modf(jd)
     I = int(I)
@@ -70,6 +71,11 @@ def date_to_julianday(d):
     assert isinstance(d, date)
     return to_julianday(d.year, d.month, d.day)
 
-def julianday_to_date(jd):
-    """Return a date object for the given Julian Day NUmber."""
-    return date(*from_julianday(jd))
+def julianday_to_date(obj):
+    """Return a date object for the given Julian Day Number or object having a .julianday property."""
+    if hasattr(obj, "julianday"):
+        return date(*from_julianday(obj.julianday))
+    try:
+        return date(*from_julianday(obj))
+    except Exception as e:
+        raise ValueError
