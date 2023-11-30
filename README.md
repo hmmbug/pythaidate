@@ -1,4 +1,4 @@
-# pythaidate: A Python Library for Thai Calendar Systems
+# pythaidate: Thai Calendar Systems for Python
 
 Thailand has used several calendar systems during its history with several still in use today. This library provides `datetime.date`-like classes for working with the Thai lunisolar calendar of the Chulasakarat Era (จุลศักราช) and the lunar Pakkhakhananaa calendar (ปฏิทินปักขคณนา).
 
@@ -87,7 +87,7 @@ True
 
 ## `PakDate`: Pakkhakhananaa Date
 
-Create a `PakDate` object from a pakcode. The `1-` prefix is the cycle number (1-indexed), followed by the ปักขคณนา, สัมพยุหะ, พยุหะ, สมุหะ, วรรค and day of moon phase. The Pakkhakhananaa cycle repeats every 289,577 days. 
+Create a `PakDate` object from a pakcode. The `1-` prefix is the cycle number (1-indexed), followed by the ปักขคณนา, สัมพยุหะ, พยุหะ, สมุหะ, วรรค and day of moon phase. The Pakkhakhananaa cycle repeats every 289,577 days.
 ```
 >>> from pythaidate import PakDate
 >>> p = PakDate(pakcode="1-6:11:5:2:2:10")
@@ -139,7 +139,7 @@ Pakkhakhananaa can be created from a `datetime.date` object:
 จุลวรรค     ม  ม  ม  จ
 มหาปักข์     ๑  ๒  ๓  ๔  ๕  ๖  ๗  ๘  ๙ ๑๐ ๑๑ ๑๒ ๑๓ ๑๔ ๑๕
 จุลปักข์      ๑  ๒  ๓  ๔  ๕  ๖  ๗  ๘  ๙ ๑๐ ๑๑ ๑๒ ๑๓ ๑๔
-           รอบที่ ๑   หรคุณปักขคณนา ๙๖๓๙๘   ปักขเกณฑ์ ๖๕๒๙ 
+           รอบที่ ๑   หรคุณปักขคณนา ๙๖๓๙๘   ปักขเกณฑ์ ๖๕๒๙
 ```
 
 ## Julian Day Number (JDN) helpers
