@@ -1,13 +1,13 @@
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: Python package
+name: Test Dev
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "dev" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "dev" ]
 
 jobs:
   build:
@@ -39,9 +39,3 @@ jobs:
     - name: Test
       run: |
         python3 -m unittest discover -v
-    - name: Build source package
-      run: |
-        python3 -m build --sdist
-    - name: Build wheel
-      run: |
-        python3 -m build --wheel
