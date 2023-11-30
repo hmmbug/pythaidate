@@ -36,7 +36,7 @@ setup(
     ],
     keywords="date, calendar, thai, development, library",
     packages=find_packages(
-        include=['pythaidate'], 
+        include=['pythaidate'],
     ),
     python_requires=">=3.8, <4",
     install_requires=[],

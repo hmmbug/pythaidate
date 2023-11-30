@@ -19,10 +19,10 @@ layout = [
     # ปักขคณนา
     [   [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 ] ],
     # สัมพยุหะ
-    [   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ], 
+    [   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ],
         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ] ],
     # พยุหะ
-    [   [ 1, 1, 1, 1, 1, 1, 0 ], 
+    [   [ 1, 1, 1, 1, 1, 1, 0 ],
         [ 1, 1, 1, 1, 1, 0 ] ],
     # สมุหะ
     [   [ 0, 0, 0, 1 ],
@@ -79,7 +79,7 @@ class PakDate:
                     return c + 1, a
                 a -= b
                 c += 1
-        
+
         def _adjust(row, prefix, col):
             logging.debug("_adjust_1(%s, %s, %s)", row, 1-prefix, col-1)
             if col > len(layout[row][1-prefix]):
@@ -93,7 +93,7 @@ class PakDate:
         self.__horakhun = jd - PAK_JULIAN_DAY_OFFSET
         if self.__horakhun <= 0:
             raise ValueError("Invalid Pakkhakhananaa range.")
-        
+
         days = self.__horakhun % PAK_DAYS_IN_CYCLE
         if days == 0:
             days = PAK_DAYS_IN_CYCLE
@@ -164,7 +164,7 @@ class PakDate:
     @property
     def pakkhagen(self):
         """
-        Number of lunar (14/15) day weeks since the epoch. (Thai: ปักขเกณฑ์) 
+        Number of lunar (14/15) day weeks since the epoch. (Thai: ปักขเกณฑ์)
         """
         if self.__pakkhagen is None:
             self.__pakkhagen = (self.__cycle - 1) * 19612 + \
@@ -186,16 +186,16 @@ class PakDate:
         """
         def _digit1(d):
             return d // 10 if d > 9 else d
-        
+
         def _digit2(d):
             return d % 10 if d > 9 else " "
-        
+
         def _ctrans(c):
             return c if c == " " else "กขฅจหฉษฐฬฮ"[c-1]
 
         def _ntrans(c):
             return c if c == " " else "๐๑๒๓๔๕๖๗๘๙"[c]
-        
+
         if self.__pakabbr is None:
             s1, s2 = [], []
             for i in range(5):
@@ -217,13 +217,13 @@ class PakDate:
     @property
     def iswaning(self):
         return self.pakkhagen % 2 == 1
-    
+
     def weekday(self):
         return self.__horakhun % 7 - 1
-    
+
     def isoweekday(self):
         return self.__horakhun % 7
-        
+
     def debug(self):
         return {
             "pakcode": self.pakcode,
@@ -231,7 +231,7 @@ class PakDate:
             "hk": self.__horakhun,
             "pakkhagen": self.__pakkhagen,
         }
-    
+
     def pakboard(self, fh=None):
         def _display():
             def _stringify(b):
@@ -296,18 +296,18 @@ class PakDate:
             output += [("มหา" if val else "จุล") + label, str(self.__data[i])]
             next_row = 1 - val
         output += ["ขึ้น" if self.iswaxing else "แรม",
-                   str(self.__data[5]), 
+                   str(self.__data[5]),
                    "ค่ำ",
                    "(" + ("ปักข์ขาด" if next_row else "ปักข์ถ้วน") + ")"]
         return digit_arabic_to_thai(" ".join(output))
-    
+
     def __lt__(self, other):
         if hasattr(other, "julianday"):
             return self.julianday < other.julianday
         elif isinstance(other, date):
             return self.julianday < julianday.to_julianday(other.year, other.month, other.day)
         return NotImplemented
-    
+
     def __le__(self, other):
         if hasattr(other, "julianday"):
             return self.julianday <= other.julianday
@@ -328,14 +328,14 @@ class PakDate:
         elif isinstance(other, date):
             return self.julianday >= julianday.to_julianday(other.year, other.month, other.day)
         return NotImplemented
-    
+
     def __gt__(self, other):
         if hasattr(other, "julianday"):
             return self.julianday > other.julianday
         elif isinstance(other, date):
             return self.julianday > julianday.to_julianday(other.year, other.month, other.day)
         return NotImplemented
-    
+
     def __add__(self, other):
         if isinstance(other, timedelta):
             return PakDate.fromjulianday(self.julianday + other.days)

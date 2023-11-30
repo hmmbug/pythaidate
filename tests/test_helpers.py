@@ -50,7 +50,7 @@ class Test_Helpers(unittest.TestCase):
             expected = "test " + t + " test"
             result = helpers.digit_arabic_to_thai(input)
             self.assertEqual(expected, result, "Failed: "+str((input, expected))+" result:"+result)
-            
+
     def test_thai_string_width(self):
         for s, w in THAI_WIDTH_TESTS:
             result = helpers.thai_string_width(s)

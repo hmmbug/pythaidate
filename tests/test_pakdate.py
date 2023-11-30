@@ -84,7 +84,7 @@ class Test_PakDate(unittest.TestCase):
             { "jd":2458526, "ad":"2019-02-11", "cs":"1380-03-07", "pakcode":"1-7:5:3:2:2:7"},
             { "jd": 2628291, "pakcode": "1-17:10:6:3:4:15", "hk": 273144, "masak": 18499, "year": 2483, "month": 11, "day": 30},
             { "jd": 2460257, "pakcode": "1-7:6:4:2:4:10"},
-            { "jd": 2749834, "pakcode": "2-7:6:4:2:4:10"},  # above pakcode + 1 cycle            
+            { "jd": 2749834, "pakcode": "2-7:6:4:2:4:10"},  # above pakcode + 1 cycle
         ]
         for t in data:
             p = PakDate(jd=t["jd"])

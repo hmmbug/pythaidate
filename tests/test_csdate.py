@@ -97,7 +97,7 @@ class Test_CsDate(unittest.TestCase):
             #                  (yd.horakhun, td))
             ymd = CsDate(yd.year, yd.month, yd.day)
             logging.debug("ymd: %s", ymd)
-            self.assertEqual(yd, ymd, 
+            self.assertEqual(yd, ymd,
                 "y_d(y:{:04d} d:{}) {}\nymd(y:{:04d} m:{} d:{}) {}".format(
                     y, d, yd._hashable(),
                     yd.year, yd.month, yd.day, ymd._hashable(),
@@ -172,8 +172,8 @@ class Test_CsDate(unittest.TestCase):
         for y, d in self.random_dates():
             y0 = CsDate.fromyd(year=y, days=d)
             y1 = CsDate.fromjulianday(y0.julianday)
-            self.assertEqual(y0, y1, 
-                (y, d, 
+            self.assertEqual(y0, y1,
+                (y, d,
                 y0.julianday, y0._hashable(),
                 y1.julianday, y1._hashable()
             ))
@@ -195,15 +195,15 @@ class Test_CsDate(unittest.TestCase):
             logging.debug("y1.jd:%s", y1.julianday)
             logging.debug(
                 "y0:{:d} + {:d} = {:d}  |  y1:{:d} (diff:{:d} d+r={:d})".format(
-                     y0.julianday, r, y0.julianday + r, 
-                     y1.julianday, 
+                     y0.julianday, r, y0.julianday + r,
+                     y1.julianday,
                      y0.julianday + r - y1.julianday, r + d
                 )
             )
             self.assertEqual(y0.julianday + r, y1.julianday,
                 "y0:{:d} + {:d} = {:d}  |  y1:{:d} (diff:{:d} d+r={:d})".format(
                      y0.julianday, r, y0.julianday + r,
-                     y1.julianday, 
+                     y1.julianday,
                      y0.julianday + r - y1.julianday, r + d
                 )
             )
@@ -219,7 +219,7 @@ class Test_CsDate(unittest.TestCase):
             r = random.randint(0, 1000)
             td = timedelta(days=r)
             y1 = y0 - td
-            self.assertEqual(y1.julianday, y0.julianday - r, 
+            self.assertEqual(y1.julianday, y0.julianday - r,
                              (y0.julianday, "-", r, "!=", y1.julianday, "diff:", y0.julianday - r - y1.julianday,
                               (y0.year, y0.month, y0.day), (y1.year, y1.month, y1.day)))
 

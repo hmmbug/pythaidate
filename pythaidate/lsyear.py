@@ -1,7 +1,7 @@
 from .constants import (
-    DAYS_IN_800_YEARS, 
-    TIME_UNITS_IN_1_DAY, 
-    EPOCH_OFFSET, 
+    DAYS_IN_800_YEARS,
+    TIME_UNITS_IN_1_DAY,
+    EPOCH_OFFSET,
     UCCAPON_CONSTANT,
     APOGEE_ROTATION_DAYS,
     CAL_TYPE_DAY_COUNTS,
@@ -12,7 +12,7 @@ class LSYear:
     """
     A lightweight class representing a lunisolar year on new year's day.
     """
-    
+
     def __init__(self, year: int):
         self.offset = False  # adjusted later
         self.year = year

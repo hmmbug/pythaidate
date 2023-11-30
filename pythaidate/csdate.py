@@ -3,9 +3,9 @@ from collections import namedtuple
 from datetime import date, timedelta
 
 from .constants import (
-    DAYS_IN_800_YEARS, 
-    TIME_UNITS_IN_1_DAY, 
-    EPOCH_OFFSET, 
+    DAYS_IN_800_YEARS,
+    TIME_UNITS_IN_1_DAY,
+    EPOCH_OFFSET,
     UCCAPON_CONSTANT,
     APOGEE_ROTATION_DAYS,
     WEEKDAYS,
@@ -38,8 +38,8 @@ MONTH_CUMULATIVE_DAYS = {
 }
 # LUNAR_MONTHS = (0, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 8, 88, 5, 6)
 LUNAR_MONTHS = (
-    0, 
-    5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 
+    0,
+    5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4,
     8, 88, 15, 16
 )
 
@@ -54,7 +54,7 @@ class CsDate:
 
     def __init__(self, year: int, month: int=None, day: int=None,
                  month_style: int = MONTH_SUK):
-        logging.debug("args year:%s month:%s day:%s, month_style:%s", 
+        logging.debug("args year:%s month:%s day:%s, month_style:%s",
                       year, month, day, month_style)
         self.__year = year
         self.__month = month
@@ -63,7 +63,7 @@ class CsDate:
         self.__month_style = month_style  # Sukothai, Chiang Mai, Keng Tung
         self.__init_ymd()
         self.__calculate()
-        logging.debug("final y:%s m:%s d:%s days:%s", 
+        logging.debug("final y:%s m:%s d:%s days:%s",
                       self.__year, self.__month, self.__day, self.__days)
 
     def __init_ymd(self):
@@ -87,10 +87,10 @@ class CsDate:
             # shift month number to end of the index in LUNAR_MONTHS[]
             self.__month += 10
         self.__days = MONTH_CUMULATIVE_DAYS[self.__year0.cal_type][tmonth-1] + self.__day - self.__year0.offset_days
-        logging.debug("ymd: y:%s m:%s d:%s days:%s cal_type:%s tmonth:%s", 
+        logging.debug("ymd: y:%s m:%s d:%s days:%s cal_type:%s tmonth:%s",
                       self.__year, self.__month, self.__day,
-                      self.__days, self.__year0.cal_type, tmonth)  
-              
+                      self.__days, self.__year0.cal_type, tmonth)
+
     def __calculate(self):
         # horakhun: The number of elapsed days since epoch plus days since New Year's Day (Thai: หรคุฌ)
         self.__horakhun = (self.__year * DAYS_IN_800_YEARS + EPOCH_OFFSET) // TIME_UNITS_IN_1_DAY + 1 + self.__days
@@ -99,7 +99,7 @@ class CsDate:
         # kammabucala: A quantity that gives the excess of solar days over whole solar days (Thai: กัมมัขผล ???)
         self.__kamma = TIME_UNITS_IN_1_DAY - (self.__year * DAYS_IN_800_YEARS + EPOCH_OFFSET) % TIME_UNITS_IN_1_DAY
 
-        # uccapon: The measure of the position of the Moon's apogee. It increases by one unit a day to 
+        # uccapon: The measure of the position of the Moon's apogee. It increases by one unit a day to
         # a maximum of 3232 (Thai: อุจจพล)
         self.__uccapon = (self.__horakhun + UCCAPON_CONSTANT) % APOGEE_ROTATION_DAYS
 
@@ -198,7 +198,7 @@ class CsDate:
                 (207, 8), (178, 7), (148, 6), (119, 5), (89, 4), (59, 3), (29, 2),
             ),
             "C": (
-                (384, 15), (354, 12), (325, 11), (295, 10), (266, 9), (236, 8), 
+                (384, 15), (354, 12), (325, 11), (295, 10), (266, 9), (236, 8),
                 (207, 7), (177, 6), (148, 5), (118, 14), (88, 13), (59, 3), (29, 2),
             ),
         }
@@ -207,7 +207,7 @@ class CsDate:
         for a, b in vals[cal]:
             if days > a:
                 days -= a
-                logging.debug("solution: (a:%s b:%s) month:%s day:%s", 
+                logging.debug("solution: (a:%s b:%s) month:%s day:%s",
                               a, b, LUNAR_MONTHS[b], days)
                 month = LUNAR_MONTHS[b]
                 break
@@ -288,27 +288,27 @@ class CsDate:
     @property
     def horakhun(self):
         return self.__horakhun
-    
+
     @property
     def kammabucala(self):
         return self.__kamma
-    
+
     @property
     def masaken(self):
         return self.__masaken
-    
+
     @property
     def uccapon(self):
         return self.__uccapon
-    
+
     @property
     def avoman(self):
         return self.__avoman
-    
+
     @property
     def tithi(self):
         return self.__tithi
-    
+
     @property
     def year(self):
         return self.__year
@@ -318,7 +318,7 @@ class CsDate:
         if self.__month == 15 or self.__month == 16:
             return self.__month - 10
         return self.__month
-    
+
     @property
     def month_raw(self):
         return self.__month
@@ -330,7 +330,7 @@ class CsDate:
     @property
     def days(self):
         return self.__days
-    
+
     @property
     def solar_leap_year(self):
         return self.__year0.leapday
@@ -351,7 +351,7 @@ class CsDate:
             return 355
         elif self.__year0.cal_type == "C":
             return 384
-    
+
     def replace(self, year=None, month=None, day=None):
         logging.debug("year:%s month%s day:%s", year, month, day)
         y = year if year else self.year
@@ -362,20 +362,20 @@ class CsDate:
 
     def csweekday(self):
         return self.__horakhun % 7
-    
+
     def weekday(self):
         return self.csweekday() - 2
-    
+
     def isoweekday(self):
         return self.csweekday() - 1
-    
+
     @property
     def yearnaksatr(self):
         idx = (self.year + 11) % 12
         if idx == 0:
             idx = 12
         return "ปี" + YEAR_NAKSATR[idx]
-    
+
     def csformat(self):
         phase = "ขึ้น" if self.day <= 15 else "แรม"
         day = self.day if self.day <= 15 else self.day - 15
@@ -389,7 +389,7 @@ class CsDate:
         )
         s = digit_arabic_to_thai(s)
         return s
-    
+
     def csformatymd(self):
         """
         Return string in YYYY-MM-DD format.
@@ -406,17 +406,17 @@ class CsDate:
         if phase == "แรม":
             day += 15
         return CsDate(year, month, day)
-    
+
     def cscalendar(self):
         return CsCalendarDate(self.year, self.month, self.day)
 
     def __str__(self):
         return self.csformat()
-    
+
     def __int__(self):
         """Convert to int by returning the Julian Day Number."""
         return self.julianday
-    
+
     def _hashable(self):
         return (
             self.__year,
@@ -438,14 +438,14 @@ class CsDate:
         elif isinstance(other, date):
             return self.julianday < julianday.to_julianday(other.year, other.month, other.day)
         return NotImplemented
-    
+
     def __le__(self, other):
         if hasattr(other, "julianday"):
             return self.julianday <= other.julianday
         elif isinstance(other, date):
             return self.julianday <= julianday.to_julianday(other.year, other.month, other.day)
         return NotImplemented
-    
+
     def __eq__(self, other):
         if hasattr(other, "julianday"):
             return self.julianday == other.julianday
@@ -459,19 +459,19 @@ class CsDate:
         elif isinstance(other, date):
             return self.julianday >= julianday.to_julianday(other.year, other.month, other.day)
         return NotImplemented
-    
+
     def __gt__(self, other):
         if hasattr(other, "julianday"):
             return self.julianday > other.julianday
         elif isinstance(other, date):
             return self.julianday > julianday.to_julianday(other.year, other.month, other.day)
         return NotImplemented
-    
+
     def __add__(self, other):
         if isinstance(other, timedelta):
             return CsDate.fromjulianday(self.julianday + other.days)
         return NotImplemented
-    
+
     __radd__ = __add__
 
     def __sub__(self, other):
