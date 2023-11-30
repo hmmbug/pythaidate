@@ -12,6 +12,7 @@ from .constants import (
     CS_JULIAN_DAY_OFFSET,
     CAL_TYPE_DAY_COUNTS,
     CS_MIN_JULIANDAY,
+    CS_UNIX_EPOCH_OFFSET,
 )
 
 from .lsyear import LSYear
@@ -269,6 +270,14 @@ class CsDate:
 
     from_julianday = fromjulianday
 
+    @classmethod
+    def fromtimestamp(cls, ts):
+        """
+        Return a Chulasakarat object from a UNIX timestamp.
+        """
+        jd = ts // (24 * 60 * 60) + CS_UNIX_EPOCH_OFFSET
+        return cls.fromjulianday(jd)
+
     @property
     def julianday(self):
         """
@@ -403,6 +412,10 @@ class CsDate:
 
     def __str__(self):
         return self.csformat()
+    
+    def __int__(self):
+        """Convert to int by returning the Julian Day Number."""
+        return self.julianday
     
     def _hashable(self):
         return (

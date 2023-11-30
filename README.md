@@ -191,7 +191,8 @@ False
 
 ## English
 
-* Eade, C. (2018). The Calendrical Systems of Mainland South-East Asia. Netherlands: Brill.
+* Eade, J.C. (2018). The Calendrical Systems of Mainland South-East Asia. Netherlands: Brill.
+* Gislén L., Eade, J.C. (2019). The Calendars of Southeast Asia 2: Burma, Thailand, Laos and Cambodia. Journal of Astronomical History and Heritage, 22(3).
 
 ## French
 

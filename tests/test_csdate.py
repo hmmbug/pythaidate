@@ -178,6 +178,11 @@ class Test_CsDate(unittest.TestCase):
                 y1.julianday, y1._hashable()
             ))
 
+    def test_fromtimestamp(self):
+        cs = CsDate.fromtimestamp(946758689)
+        dt = date(2000, 1, 1)
+        self.assertEqual(cs.julianday, dt.julianday)
+
     def test_add_timedelta(self):
         for y, d in self.random_dates():
             r = random.randint(0, 500)

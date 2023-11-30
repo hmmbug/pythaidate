@@ -4,7 +4,7 @@ import datetime
 from .csdate import CsDate
 from .pakdate import PakDate
 
-from .julianday import to_julianday
+from .julianday import to_julianday, from_julianday
 
 __ALL__ = (
     "CsDate",
@@ -21,5 +21,10 @@ if os.environ.get("PYTHAIDATE_NO_MONKEYPATCH") is None:
         def julianday(self):
             "Returns the Julian Day Number of the date."
             return to_julianday(self.year, self.month, self.day)
+        
+        # @classmethod
+        # def fromjulianday(cls, jd):
+        #     "Return date object from Julian Day Number or object with a .julianday property."
+        #     return datetime.date(*from_julianday(jd))
 
     datetime.date = _date
