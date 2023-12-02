@@ -50,9 +50,7 @@ class LSYear:
         # is there a solar year leap day?
         self.leapday = self.kammabucapon <= 207
 
-        # A: normal year, 354 days
-        # B: leap day, 355 days
-        # C: leap month, 384 days
+        # A: normal year, 354 days; B: leap day, 355 days; C: leap month, 384 days
         self.cal_type = 'A'  # normal year
         if self.tithi > 24 or self.tithi < 6:
             self.cal_type = 'C'  # leap month
