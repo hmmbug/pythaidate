@@ -19,7 +19,7 @@ class LSYear:
 
         # this year
         self.horakhun = (year * DAYS_IN_800_YEARS + EPOCH_OFFSET) // TIME_UNITS_IN_1_DAY + 1
-        self.kammabucapon = TIME_UNITS_IN_1_DAY - (year * DAYS_IN_800_YEARS + EPOCH_OFFSET) % TIME_UNITS_IN_1_DAY
+        self.kammacapon = TIME_UNITS_IN_1_DAY - (year * DAYS_IN_800_YEARS + EPOCH_OFFSET) % TIME_UNITS_IN_1_DAY
         # ucc_i = (2611 + self.ahargana) // APOGEE_ROTATION_DAYS
         self.uccapon = (UCCAPON_CONSTANT + self.horakhun)  % APOGEE_ROTATION_DAYS
         avo_quot = (self.horakhun * 11 + 650) // 692
@@ -48,7 +48,7 @@ class LSYear:
         self.nyd = (self.weekday - self.nyd + 1 + 35) % 7
 
         # is there a solar year leap day?
-        self.leapday = self.kammabucapon <= 207
+        self.leapday = self.kammacapon <= 207
 
         # A: normal year, 354 days; B: leap day, 355 days; C: leap month, 384 days
         self.cal_type = 'A'  # normal year
@@ -73,7 +73,7 @@ class LSYear:
             "next_nyd:{:d} langsak:{:d} bissext:{:d} offset:{:d} cal:{:s}"
         return s.format(
             self.horakhun,
-            self.kammabucapon,
+            self.kammacapon,
             self.uccapon,
             self.avoman,
             self.masaken,
