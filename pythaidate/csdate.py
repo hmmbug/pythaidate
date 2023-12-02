@@ -149,12 +149,6 @@ class CsDate:
                 j = 1 if y[i].nyd == y[i-1].next_nyd else -1
                 y[i+j].cal_type = "B"
                 y[i+j].next_nyd = (y[i+j].next_nyd + 1) % 7
-                # if y[i].nyd != y[i-1].next_nyd:
-                #     y[i-1].cal_type = "B"
-                #     y[i-1].next_nyd = (y[i-1].next_nyd + 1) % 7
-                # else:
-                #     y[i+1].cal_type = "B"
-                #     y[i+1].next_nyd = (y[i+1].next_nyd + 1) % 7
         # logging.debug("[2] year0[].caltype:%s", "".join([i.cal_type for i in y]))
 
         for i in (1, 2, 3):
