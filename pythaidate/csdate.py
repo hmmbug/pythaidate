@@ -96,7 +96,7 @@ class CsDate:
         self.__horakhun = (self.__year * DAYS_IN_800_YEARS + EPOCH_OFFSET) // TIME_UNITS_IN_1_DAY + 1 + self.__days
         assert self.julianday >= CS_MIN_JULIANDAY  # check for pre-epoch dates
 
-        # kammabucala: A quantity that gives the excess of solar days over whole solar days (Thai: กัมมัขผล ???)
+        # kammabucapon: A quantity that gives the excess of solar days over whole solar days (Thai: กัมมัขผล)
         self.__kamma = TIME_UNITS_IN_1_DAY - (self.__year * DAYS_IN_800_YEARS + EPOCH_OFFSET) % TIME_UNITS_IN_1_DAY
 
         # uccapon: The measure of the position of the Moon's apogee. It increases by one unit a day to
@@ -263,7 +263,7 @@ class CsDate:
         else:
             year0 = cls.calculate_year0(year)
             days = hk - year0.horakhun
-        # logging.debug("kamma:%s", year0.kammabucala)
+        # logging.debug("kamma:%s", year0.kammabucapon)
         # logging.debug("jd:%s year:%s days:%s cal_type:%s hk0:%s", jd, year, days, year0.cal_type, year0.horakhun)
         logging.debug("jd:%s year:%s days:%s", jd, year, days)
         return cls.fromyd(year=year, days=days)
@@ -290,7 +290,7 @@ class CsDate:
         return self.__horakhun
 
     @property
-    def kammabucala(self):
+    def kammabucapon(self):
         return self.__kamma
 
     @property
