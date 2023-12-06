@@ -11,7 +11,6 @@ from .constants import (
     WEEKDAYS,
     CS_JULIAN_DAY_OFFSET,
     CAL_TYPE_DAY_COUNTS,
-    CS_MIN_JULIANDAY,
     CS_UNIX_EPOCH_OFFSET,
 )
 
@@ -94,7 +93,7 @@ class CsDate:
     def __calculate(self):
         # horakhun: The number of elapsed days since epoch plus days since New Year's Day (Thai: หรคุฌ)
         self.__horakhun = (self.__year * DAYS_IN_800_YEARS + EPOCH_OFFSET) // TIME_UNITS_IN_1_DAY + 1 + self.__days
-        assert self.julianday >= CS_MIN_JULIANDAY  # check for pre-epoch dates
+        assert self.julianday > CS_JULIAN_DAY_OFFSET  # check for pre-epoch dates
 
         # kammacapon: A quantity that gives the excess of solar days over whole solar days (Thai: กัมมัขผล)
         self.__kammacapon = TIME_UNITS_IN_1_DAY - (self.__year * DAYS_IN_800_YEARS + EPOCH_OFFSET) % TIME_UNITS_IN_1_DAY
