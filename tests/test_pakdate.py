@@ -15,7 +15,7 @@ if os.environ.get("RUN_PERCENT"):
     RUN_PERCENT = int(os.environ.get("RUN_PERCENT"))
     if RUN_PERCENT > 100:
         RUN_PERCENT = 100
-
+RUN_PERCENT /= 100
 
 for datafile in ("pak.data", "pak.min.data"):
     datafile = os.path.join(pathlib.Path(__file__).parent.resolve(), "data", datafile)
@@ -27,7 +27,6 @@ else:
 random.seed()
 
 def read_test_date(sample=1, minjd=None):
-    data = []
     with open(datafile) as fh:
         for ln in fh:
             if random.random() > sample:
@@ -42,16 +41,11 @@ def read_test_date(sample=1, minjd=None):
                 "year": int(y),
                 "month": int(m),
                 "day": int(d),
+                "iswanphra": i[5] == 't',
             }
             if minjd and e["jd"] < minjd:
                 continue
-            if e["jd"] > 2644223:
-                # test data is erroreous beyond this point
-                break
-            data.append(e)
-    return data
-
-TESTDATA = read_test_date(sample=RUN_PERCENT/100)
+            yield e
 
 
 class Test_PakDate(unittest.TestCase):
@@ -61,22 +55,31 @@ class Test_PakDate(unittest.TestCase):
             # pre-epoch jd
             p = PakDate(jd=PAK_JULIAN_DAY_OFFSET - 5)
 
-    def test_jd_to_pakcode(self):
-        for t in TESTDATA:
-            p = PakDate(jd=t["jd"])
+    def test_cycle_testdata(self):
+        def _validate(t, p):
             self.assertEqual(t["pakcode"], p.pakcode, (t, p.debug()))
+            self.assertEqual(t["jd"], p.julianday, (t, p.debug()))
+            self.assertEqual(t["hk"], p.horakhun)
 
-    def test_pakcode_to_jd(self):
-        for t in TESTDATA:
+            iwp = p.iswanphra
+            self.assertIs(t["iswanphra"], iwp, (t["iswanphra"], iwp))
+
+            dtp = date(*julianday.from_julianday(p.julianday)).isoformat()
+            dtt = "{:4d}-{:02d}-{:02d}".format(t["year"], t["month"], t["day"])
+            self.assertEqual(dtt, dtp, (t, p.debug()))
+
+        for t in read_test_date(sample=RUN_PERCENT):
+            # from jd
+            p = PakDate(jd=t["jd"])
+            _validate(t, p)
+
+            # from pakcode
             p = PakDate(pakcode=t["pakcode"])
-            self.assertEqual(p.julianday, t["jd"], (p.debug(), t))
-            self.assertEqual(p.horakhun, t["hk"])
-
-    def test_date_to_pakcode(self):
-        for t in TESTDATA:
+            _validate(t, p)
+            # from date
             d = date(t["year"], t["month"], t["day"])
             p = PakDate(date=d)
-            self.assertEqual(t["pakcode"], p.pakcode, (t, p.debug()))
+            _validate(t, p)
 
     def test_adhoc(self):
         data = [
@@ -96,18 +99,6 @@ class Test_PakDate(unittest.TestCase):
                 self.assertEqual(t["cs"], cs.csformatymd())
             if "pakcode" in t:
                 self.assertEqual(t["pakcode"], p.pakcode)
-
-    def test_pakcode_to_date(self):
-        for t in TESTDATA:
-            p = PakDate(pakcode=t["pakcode"])
-            dtp = date(*julianday.from_julianday(p.julianday)).isoformat()
-            dtt = "{:4d}-{:02d}-{:02d}".format(t["year"], t["month"], t["day"])
-            self.assertEqual(dtt, dtp, (t, p.debug()))
-
-    def test_pakcode(self):
-        for t in TESTDATA:
-            p = PakDate(jd=t["hk"] + PAK_JULIAN_DAY_OFFSET)
-            self.assertEqual(p.pakcode, t["pakcode"])
 
     def test_pakkhagen(self):
         TESTS = (
@@ -174,8 +165,8 @@ class Test_PakDate(unittest.TestCase):
             p1 = p0 + td
             self.assertEqual(p0.julianday + r, p1.julianday)
 
-    def test_add_dates(self):
-        pass
+    # def test_add_dates(self):
+    #     pass
 
     def test_add_typeerror(self):
         y = PakDate(jd=2454103)
