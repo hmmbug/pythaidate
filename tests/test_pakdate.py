@@ -42,6 +42,7 @@ def read_test_date(sample=1, minjd=None):
                 "year": int(y),
                 "month": int(m),
                 "day": int(d),
+                "iswanphra": i[5] == 't',
             }
             if minjd and e["jd"] < minjd:
                 continue
@@ -65,6 +66,9 @@ class Test_PakDate(unittest.TestCase):
         for t in TESTDATA:
             p = PakDate(jd=t["jd"])
             self.assertEqual(t["pakcode"], p.pakcode, (t, p.debug()))
+
+            iwp = p.iswanphra
+            self.assertIs(t["iswanphra"], iwp, (t["iswanphra"], iwp))
 
     def test_pakcode_to_jd(self):
         for t in TESTDATA:

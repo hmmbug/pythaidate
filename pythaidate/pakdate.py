@@ -218,6 +218,18 @@ class PakDate:
     def iswaning(self):
         return self.pakkhagen % 2 == 1
 
+    @property
+    def iswanphra(self):
+        f_days = 15 if self.__pos[5][0] else 14
+        d = self.__data[5]
+        val = d / f_days
+        logging.debug("f_days:%d d:%d val:%d t1:%s t2:%s t3:%s",
+                      f_days, d, val,
+                      val == 4/7, val == 8/15, val == 1)
+        return val == 4/7 or val == 8/15 or val == 1
+
+    issabbath = iswanphra
+
     def weekday(self):
         return self.__horakhun % 7 - 1
 
