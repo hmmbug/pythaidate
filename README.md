@@ -95,8 +95,10 @@ Create a `PakDate` object from a pakcode. The `1-` prefix is the cycle number (1
 96398
 >>> p.julianday
 2451545
+>>> p.iswanphra
+False
 ```
-Note that the `horakhun` value from Pakkhakhananaa lunar and (Chulasakarat era) lunisolar calendars are not compatible as they represent day count since the epoch of each calendar. For comparisons use `julianday` instead.
+Note that the `horakhun` value from Pakkhakhananaa lunar and (Chulasakarat era) lunisolar calendars are not compatible as they represent day count since the epoch of each calendar. For comparisons use `julianday` instead. `iswanphra` has an alias `issabbath`.
 
 The Pakkhakhananaa code and abbreviations are available:
 ```
