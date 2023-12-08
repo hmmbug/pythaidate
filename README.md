@@ -206,3 +206,7 @@ False
 
 * [NASA's Julian Day Number Calculator](https://core2.gsfc.nasa.gov/time/julian.html)
 * [ปฏิทินปักขคณนา.com](https://xn--12ccg5bxauoekd6vraqb.com/)
+
+# Contributors
+
+* Mark Hollow <dev {at} hmmbug.com> (Project Owner)
