@@ -155,23 +155,15 @@ Pakkhakhananaa can be created from a `datetime.date` object:
 * `date_to_julianday(d)`: converts `datetime.date` object or other object with a `julianday` property to JDN
 * `julianday_to_date(jd)`: converts JDN to a `datetime.date` object
 
-# Monkey patching `datetime.date`
+## `pythaidate.date`: A `datetime.date` subclass
 
-The Julian Day Number is a useful way to convert between calendar systems. The `CsDate` and `PakDate` classes both have a `.julianday` property but Python's `datetime.date` doesn't. By default `pythaidate` will monkey patch `datetime.date` to add a `.julianday` property to add this useful feature. `pythaidate` (or a class from it) must be imported before importing `datetime.date`.
-
-To disable this, set the `PYTHAIDATE_NO_MONKEYPATCH` environment variable to any non-empty value. Behaviour of `pythaidate` won't be affected if disabled as the conversion functions look for both `date` objects and `julianday` properties.
+`pythaidate.date` is a simple subclass of `datetime.date` with an added `.julianday` property:
 
 ```
->>> from pythaidate import Chulasakarat
->>> from datetime import date
->>> hasattr(date, "julianday")
-True
-```
-```
->>> from datetime import date
->>> from pythaidate import Chulasakarat
->>> hasattr(date, "julianday")
-False
+>>> from pythaidate import date
+>>> d = date(2000, 1, 1)
+>>> d.julianday
+2451545
 ```
 
 # Limitations

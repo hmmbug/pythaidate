@@ -7,24 +7,20 @@ from .pakdate import PakDate
 from .julianday import to_julianday, from_julianday
 
 __ALL__ = (
+    "date",
     "CsDate",
     "PakDate",
 )
 
-if os.environ.get("PYTHAIDATE_NO_MONKEYPATCH") is None:
-    # If PYTHAIDATE_NO_MONKEYPATCH is not set, monkey patch date objects to
-    # have a julianday property.
-    datetime._date = datetime.date
 
-    class _date(datetime._date):
-        @property
-        def julianday(self):
-            "Returns the Julian Day Number of the date."
-            return to_julianday(self.year, self.month, self.day)
+class date(datetime.date):
+    "pythaidate date class."
 
-        # @classmethod
-        # def fromjulianday(cls, jd):
-        #     "Return date object from Julian Day Number or object with a .julianday property."
-        #     return datetime.date(*from_julianday(jd))
+    def __new__(cls, year, month, day):
+        dt = datetime.date.__new__(cls, year, month, day)
+        return dt
 
-    datetime.date = _date
+    @property
+    def julianday(self):
+        "Returns the Julian Day Number of the date."
+        return to_julianday(self.year, self.month, self.day)
