@@ -8,7 +8,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="pythaidate",
-    version="0.1.11",  # major, minor, fix
+    version="0.2.0",  # major, minor, fix
     description=short_description,
     long_description=long_description,
     long_description_content_type="text/markdown",
