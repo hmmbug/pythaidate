@@ -73,8 +73,8 @@ A `CsDate` can be displayed as text with `.csformat()` or by converting the obje
 * `leap_month`: for the lunar intercalary month (อธิกมาส)
 * `days_in_year`: returns the number of days in the year. This will be one of:
     * 354: no intercalations (ปกติมาส ปกติวาร)
-    * 355: intercalary month, no intercalary day (ปกติมาส อธิกวาร)
-    * 384: no intercalary month, intercalary day (อธิกมาส ปกติวาร)
+    * 355: no intercalary month, intercalary day (ปกติมาส อธิกวาร)
+    * 384: intercalary month, no intercalary day (อธิกมาส ปกติวาร)
 
 In the Thai lunisolar calendar system a year can only have either zero or one intercalations. There can't be both an intercalary day (อธิกวาร) and month (อธิกมาส) in the same year.
 ```
