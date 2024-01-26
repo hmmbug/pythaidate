@@ -3,7 +3,7 @@
 ![PyPI - License](https://img.shields.io/pypi/l/pythaidate)
 ![PyPI - Version](https://img.shields.io/pypi/v/pythaidate)
 
-Thailand has used several calendar systems during its history with several still in use today. This library provides `datetime.date`-like classes for working with the Thai lunisolar calendar of the Chulasakarat Era (จุลศักราช) and the lunar Pakkhakhananaa calendar (ปฏิทินปักขคณนา).
+Thailand has used several calendar systems during its history and some are still in use today. This library provides `datetime.date`-like classes for working with the Thai lunisolar calendar of the Chulasakarat Era (จุลศักราช) and the lunar Pakkhakhananaa calendar (ปฏิทินปักขคณนา).
 
 # Installation
 
@@ -39,7 +39,7 @@ The `horakhun` (หรคุฌ) property gives the days since the epoch and `ju
 ```
 
 Other properties show the internal calculation values:
-* `kammabucala`: (กัมมัขผล) the excess of solar days over whole solar days
+* `kammabucapon`: (กัมมัขผล) the excess of solar days over whole solar days
 * `masaken`: (มาสเกฌฑ์) The number of lunar months since the epoch
 * `uccapon`: (อุจจพล) The measure of the position of the Moon's apogee (furthest distance from the Earth). It increases by one unit a day to a maximum of 3232.
 * `avoman`: (อวมาน) The excess of lunar days over solar days in units of 1/692 of a lunar day modulus 692, increasing by 11 units each solar day. It is used to determine when to add intercalary days in the calendar
